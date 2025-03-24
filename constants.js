@@ -89,20 +89,21 @@ const postData = () => {
     //post data
     fetch(scriptURL, { method: 'POST', body: formData })
         .then(response => {
+            console.log(response);
             drinksCard.style.display = 'none';
-
             // Show completion card
             completionCard.style.display = 'block';
-
             completionCard.classList.add('show');
-
             // Scroll to top
             document.body.scrollTop = 0; // For Safari
             document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-
             // Create completion celebration effects
             createCompletionCelebration();
         })
-        .then(() => { window.location.reload(); })
+        .then(() => {
+            setTimeout(() => {
+                console.log("đã ghi");
+            }, 1000); window.location.reload();
+        })
         .catch(error => console.error('Error!', error.message))
 }
