@@ -85,20 +85,28 @@ const postData = () => {
 
 
     formData.append(TimeEnd, formatDate(now))
-
+    console.log("checkout from PostData")
     //post data
     fetch(scriptURL, { method: 'POST', body: formData })
         .then(response => {
-            console.log(response);
-            drinksCard.style.display = 'none';
-            // Show completion card
-            completionCard.style.display = 'block';
-            completionCard.classList.add('show');
-            // Scroll to top
-            document.body.scrollTop = 0; // For Safari
-            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-            // Create completion celebration effects
-            createCompletionCelebration();
+            setTimeout(() => {
+                drinksCard.style.display = 'none';
+
+                // Show completion card
+                completionCard.style.display = 'block';
+
+                setTimeout(() => {
+                    completionCard.classList.add('show');
+
+                    // Scroll to top
+                    document.body.scrollTop = 0; // For Safari
+                    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+
+                    // Create completion celebration effects
+                    createCompletionCelebration();
+                }, 50);
+            }, 500);
+       
         })
         .then(() => {
             setTimeout(() => {
