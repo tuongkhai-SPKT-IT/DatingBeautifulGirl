@@ -1482,6 +1482,7 @@ document.addEventListener('DOMContentLoaded', function () {
             drinksCard.style.transform = 'scale(0.8)';
             drinksCard.style.opacity = '0';
 
+            postData();
             setTimeout(() => {
                 drinksCard.style.display = 'none';
 

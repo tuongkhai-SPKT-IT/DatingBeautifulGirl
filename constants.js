@@ -64,22 +64,23 @@ const getData = () => {
         });
         const now = new Date();
 
-        window.localStorage.setItem(TimeStart, formatDate(now))
+        localStorage.setItem(TimeStart, formatDate(now))
     })
 }
 const postData = () => {
     const formData = new FormData();
     ///data post
     const now = new Date();
-    formData.append(ID, window.localStorage.getItem(ID))
-    formData.append(TimeStart, window.localStorage.getItem(TimeStart))
+    formData.append(ID, localStorage.getItem(ID))
+    formData.append(TimeStart, localStorage.getItem(TimeStart))
     formData.append(AcceptDate, formatDay(now))
-    if (window.localStorage.getItem(Where) && window.localStorage.getItem(When) && window.localStorage.getItem(WhatEat) && window.localStorage.getItem(WhatDrink)) {
+    if (localStorage.getItem(Where) && localStorage.getItem(When)
+        && localStorage.getItem(WhatEat) && localStorage.getItem(WhatDrink)) {
 
-        formData.append(Where, removeBracketsAndQuotes(addBlank(window.localStorage.getItem(Where))))
-        formData.append(When, removeBracketsAndQuotes(addBlank(window.localStorage.getItem(When))))
-        formData.append(WhatEat, removeBracketsAndQuotes(addBlank(window.localStorage.getItem(WhatEat))))
-        formData.append(WhatDrink, removeBracketsAndQuotes(addBlank(window.localStorage.getItem(WhatDrink))))
+        formData.append(Where, removeBracketsAndQuotes(addBlank(localStorage.getItem(Where))))
+        formData.append(When, removeBracketsAndQuotes(addBlank(localStorage.getItem(When))))
+        formData.append(WhatEat, removeBracketsAndQuotes(addBlank(localStorage.getItem(WhatEat))))
+        formData.append(WhatDrink, removeBracketsAndQuotes(addBlank(localStorage.getItem(WhatDrink))))
     }
     else return;
 
@@ -106,12 +107,12 @@ const postData = () => {
                     createCompletionCelebration();
                 }, 50);
             }, 500);
-       
+
         })
         .then(() => {
             setTimeout(() => {
                 console.log("đã ghi");
-            }, 1000); window.location.reload();
+            }, 1000); location.reload();
         })
         .catch(error => console.error('Error!', error.message))
 }
