@@ -2071,5 +2071,5 @@ document.addEventListener('DOMContentLoaded', function () {
             }, duration * 1000 + 1000);
         }, 300);
     }
-    document.getElementById("yes-btn").click();
+   // document.getElementById("yes-btn").click();
 });
