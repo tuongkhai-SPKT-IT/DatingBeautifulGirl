@@ -417,14 +417,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     celebrateSuccess();
                     ///cần xoá
-                    document.getElementById("choose-location-btn").click();
-                    document.querySelectorAll(".location-btn")[0].click();
-                    confirmLocationBtn.click();
-                    setTimeout(() => {
-                        const dateTimeinput = document.getElementsByClassName("flatpickr-input")
-                        dateTimeinput[0].value = "Mar 29, 2025"
-                        dateTimeinput[1].value = "12:00 PM"
-                    }, 100);
+                   // document.getElementById("choose-location-btn").click();
+                   // document.querySelectorAll(".location-btn")[0].click();
+                   // confirmLocationBtn.click();
+                    //setTimeout(() => {
+                        //const dateTimeinput = document.getElementsByClassName("flatpickr-input")
+                     //   dateTimeinput[0].value = "Mar 29, 2025"
+                       // dateTimeinput[1].value = "12:00 PM"
+                   // }, 100);
 
                 }, 50);
             }, 500);
