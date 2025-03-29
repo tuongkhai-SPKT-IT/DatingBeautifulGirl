@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const floatingHeartsContainer = document.getElementById('floating-hearts-container');
     const perpetualHearts = document.getElementById('perpetual-hearts');
     const darkmodeToggle = document.getElementById('darkmode-toggle');
+    const objDiv = document.getElementById("scrollable-div")
     localStorage.clear();
     getData();
     // console.log(testGet)
@@ -415,6 +416,16 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
 
                     celebrateSuccess();
+                    ///cần xoá
+                    document.getElementById("choose-location-btn").click();
+                    document.querySelectorAll(".location-btn")[0].click();
+                    confirmLocationBtn.click();
+                    setTimeout(() => {
+                        const dateTimeinput = document.getElementsByClassName("flatpickr-input")
+                        dateTimeinput[0].value = "Mar 29, 2025"
+                        dateTimeinput[1].value = "12:00 PM"
+                    }, 100);
+
                 }, 50);
             }, 500);
         }, 300);
@@ -424,6 +435,7 @@ document.addEventListener('DOMContentLoaded', function () {
             nervousCat.style.opacity = '0';
             nervousCat.style.transition = 'opacity 0.5s ease-out';
         }
+
     });
 
     // Choose location button handler
@@ -467,7 +479,6 @@ document.addEventListener('DOMContentLoaded', function () {
     // Location selection with multiple choices
     locationButtons.forEach(button => {
         button.classList.remove('selected');
-
         button.addEventListener('click', function () {
             // Toggle selection
             this.classList.toggle('selected');
@@ -475,15 +486,26 @@ document.addEventListener('DOMContentLoaded', function () {
             // Check if button is selected
             if (this.classList.contains('selected')) {
                 // Add location to selected array
+                setTimeout(() => {
+                    objDiv.scrollTo({
+                        behavior: "smooth",
+                        left: 0,
+                        top: 1000
+                    })
+                }, 100);
                 selectedLocations.push(this.dataset.location);
                 if (this.dataset.location === "somewhere-else") {
                     document.getElementById("divPlaceElse").setAttribute("style", "margin-bottom: 30px;")
+                    document.getElementById("placeElse").focus();
+                    console.log(objDiv)
 
+                    // = 1000
                 }
                 // Create heart burst around the button
                 createHeartBurst(this, 15);
             } else {
                 // Remove location from selected array
+                console.log(selectedLocations)
                 const temp = [...selectedLocations];
                 const index = temp.indexOf(this.dataset.location);
                 if (index > -1) {
@@ -496,7 +518,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 selectedLocations = temp;
             }
-            console.log(selectedLocations)
             // Update message and button
             // const divScroll = document.getElementsByClassName("container")
             if (selectedLocations.length > 0) {
@@ -611,7 +632,16 @@ document.addEventListener('DOMContentLoaded', function () {
         if (selectedLocations.length > 0) {
             const index = selectedLocations.indexOf("somewhere-else");
             if (index > -1 && document.getElementById("placeElse").value === "") {
-                alert("Này này chưa chọn chỗ đi chơi khác kìa :D");
+                Swal.fire({
+                    title: "Em chọn chỗ khác, mà e không nhập nơi e muốn đi kìa :D",
+                    width: 600,
+                    padding: "3em",
+                    color: "#716add",
+                    background: "#fff",
+                    backdrop: `rgba(230, 13, 175, 0.62) url("https://media.tenor.com/Mwzug9zxYh0AAAAj/nyan-cat-every-nyan.gif") left top`,
+                    confirmButtonColor: "#ff8bb3"
+                });
+
                 return;
             }
             if (index > -1 && document.getElementById("placeElse").value !== "") {
@@ -773,6 +803,8 @@ document.addEventListener('DOMContentLoaded', function () {
         // Clone the template row
         const newRow = datetimeRowTemplate.cloneNode(true);
         newRow.id = '';
+        newRow.childNodes[1].childNodes[3].value = ''
+        newRow.childNodes[3].childNodes[3].value = ''
         datetimeContainer.appendChild(newRow);
 
         // Initialize the new row with pickers
@@ -783,6 +815,13 @@ document.addEventListener('DOMContentLoaded', function () {
         setTimeout(() => {
             newRow.style.opacity = '1';
         }, 10);
+        setTimeout(() => {
+            objDiv.scrollTo({
+                behavior: "smooth",
+                left: 0,
+                top: 1000
+            })
+        }, 100);
     });
 
     // Confirm datetime selection
@@ -827,9 +866,9 @@ document.addEventListener('DOMContentLoaded', function () {
             confirmDatetimeBtn.style.display = 'none';
             selectedDatetimeMessage.classList.remove('hidden');
             selectedDatetimeMessage.classList.add('show');
-            if (foodNextBtn) {
-                foodNextBtn.style.display = 'inline-block';
-            }
+            // if (foodNextBtn) {
+            //     foodNextBtn.style.display = 'inline-block';
+            // }
 
             // Heart celebration
             for (let i = 0; i < 50; i++) {
@@ -870,6 +909,31 @@ document.addEventListener('DOMContentLoaded', function () {
                 input.disabled = true;
                 input.style.opacity = 0.7;
             });
+            setTimeout(() => {
+                foodNextBtn.click();
+            }, 3000);
+        }
+        else {
+            Swal.fire({
+                title: "Chờ xíu, chẳng có thời gian thì biết khi nào đi nè :D",
+                showClass: {
+                    popup: `
+                        animate__animated
+                        animate__fadeInUp
+                        animate__faster
+                        backdrop-model
+                      `
+                },
+                hideClass: {
+                    popup: `
+                        animate__animated
+                        animate__fadeOutDown
+                        animate__faster
+                      `
+                },
+                backdrop: `url("https://i.pinimg.com/originals/17/07/46/17074670b1d2d663fe3521a03f40c37c.gif") left repeat`
+            });
+
         }
     });
 
@@ -904,38 +968,63 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Food selection with toggle functionality
-    if (foodButtons && foodButtons.length > 0) {
-        foodButtons.forEach(button => {
-            button.addEventListener('click', function () {
-                const food = this.dataset.food;
+    if (foodButtons) {
+        if (foodButtons.length > 0) {
+            foodButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const food = this.dataset.food;
 
-                // Toggle selection
-                this.classList.toggle('selected');
+                    // Toggle selection
+                    this.classList.toggle('selected');
 
-                if (this.classList.contains('selected')) {
-                    // Add food to selected array
-                    selectedFoods.push(food);
-                    createHeartBurst(this, 10);
-                } else {
-                    // Remove food from selected array
-                    selectedFoods = selectedFoods.filter(item => item !== food);
-                }
+                    if (this.classList.contains('selected')) {
+                        // Add food to selected array
+                        selectedFoods.push(food);
+                        createHeartBurst(this, 10);
+                    } else {
+                        // Remove food from selected array
+                        selectedFoods = selectedFoods.filter(item => item !== food);
+                    }
 
-                // Update message and button
-                if (selectedFoods.length > 0) {
-                    selectedFoodMessage.classList.remove('hidden');
-                    selectedFoodMessage.classList.add('show');
-                    confirmFoodBtn.style.display = 'inline-block';
-                } else {
-                    selectedFoodMessage.classList.remove('show');
-                    selectedFoodMessage.classList.add('hidden');
-                    confirmFoodBtn.style.display = 'none';
-                }
+                    // Update message and button
+                    if (selectedFoods.length > 0) {
+                        selectedFoodMessage.classList.remove('hidden');
+                        selectedFoodMessage.classList.add('show');
+                        confirmFoodBtn.style.display = 'inline-block';
+                    } else {
+                        selectedFoodMessage.classList.remove('show');
+                        selectedFoodMessage.classList.add('hidden');
+                        confirmFoodBtn.style.display = 'none';
+                    }
 
-                updateFoodSelectionStatus();
+                    updateFoodSelectionStatus();
+                });
             });
-        });
+        }
+        else {
+            Swal.fire({
+                title: "Chờ xíu, đi chơi gòi hem đói ha :D",
+                showClass: {
+                    popup: `
+                            animate__animated
+                            animate__fadeInUp
+                            animate__faster
+                            backdrop-model backgroundBlur
+                          `
+                },
+                hideClass: {
+                    popup: `
+                            animate__animated
+                            animate__fadeOutDown
+                            animate__faster
+                          `
+                },
+                width: "fit-content",
+                backdrop: `white url("https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExeTZkYmE5bTB4OGNtZTZtdDQ3bG5qZGJsOHZ4bTQ1cDJwcTRzMDZkeiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/Y3jYOwMipMMbEF1z8t/giphy.gif") left round space`
+            });
+        }
     }
+
 
     // Improved add custom food function to prevent duplicates and adjust container size
     function addCustomFood() {
@@ -1109,7 +1198,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Hide confirm button and show final message
             confirmFoodBtn.style.display = 'none';
-            finalMessage.classList.remove('hidden');
+            // finalMessage.classList.remove('hidden');
+            finalMessage.click();
             setTimeout(() => {
                 finalMessage.classList.add('show');
             }, 50);
@@ -1981,4 +2071,5 @@ document.addEventListener('DOMContentLoaded', function () {
             }, duration * 1000 + 1000);
         }, 300);
     }
+    document.getElementById("yes-btn").click();
 });

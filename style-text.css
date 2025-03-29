@@ -6,13 +6,16 @@
 }
 
 body {
-    background-color: #f8e9ec; /* Darker shade for light mode */
-    background-image: linear-gradient(45deg, #f8e9ec 0%, #ffdee5 100%); /* Less bright gradient */
+    background-color: #f8e9ec;
+    /* Darker shade for light mode */
+    background-image: linear-gradient(45deg, #f8e9ec 0%, #ffdee5 100%);
+    /* Less bright gradient */
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    overflow-x: hidden; /* Allow vertical scrolling but prevent horizontal */
+    overflow-x: hidden;
+    /* Allow vertical scrolling but prevent horizontal */
     overflow-y: auto;
     transition: background-color 0.5s ease-out, color 0.5s ease-out;
 }
@@ -53,7 +56,8 @@ body.dark-mode {
     position: fixed;
     top: 20px;
     right: 20px;
-    z-index: 2000; /* Ensure it's above all other elements */
+    z-index: 2000;
+    /* Ensure it's above all other elements */
     cursor: pointer;
 }
 
@@ -68,7 +72,8 @@ body.dark-mode {
     cursor: pointer;
     transition: 0.3s;
     border: 2px solid rgba(255, 182, 193, 0.5);
-    box-sizing: border-box; /* Ensure padding and border are included in width/height */
+    box-sizing: border-box;
+    /* Ensure padding and border are included in width/height */
 }
 
 .theme-toggle label:after {
@@ -88,18 +93,21 @@ body.dark-mode {
     width: 0;
     height: 0;
     visibility: hidden;
-    position: absolute; /* Ensure it doesn't interfere with layout */
+    position: absolute;
+    /* Ensure it doesn't interfere with layout */
 }
 
-.theme-toggle input:checked + label {
+.theme-toggle input:checked+label {
     background: linear-gradient(45deg, #282839, #262338);
     border-color: rgba(123, 104, 238, 0.4);
 }
 
 /* Fix the toggle circle going outside the container */
-.theme-toggle input:checked + label:after {
-    left: calc(100% - 28px); /* 100% minus circle width (26px) minus right offset (2px) */
-    transform: translateX(0); /* Remove translateX(-100%) to fix positioning */
+.theme-toggle input:checked+label:after {
+    left: calc(100% - 28px);
+    /* 100% minus circle width (26px) minus right offset (2px) */
+    transform: translateX(0);
+    /* Remove translateX(-100%) to fix positioning */
     background: linear-gradient(45deg, #7986cb, #5c6bc0);
 }
 
@@ -124,12 +132,12 @@ body.dark-mode {
     transform: scale(0.85);
 }
 
-.theme-toggle input:checked + label svg.sun {
+.theme-toggle input:checked+label svg.sun {
     stroke: #ffb6c1;
     opacity: 0.6;
 }
 
-.theme-toggle input:checked + label svg.moon {
+.theme-toggle input:checked+label svg.moon {
     fill: #e0e0ff;
 }
 
@@ -142,7 +150,8 @@ body.dark-mode {
     left: 0;
     pointer-events: none;
     z-index: 1;
-    display: none; /* Hidden initially, will be shown after success */
+    display: none;
+    /* Hidden initially, will be shown after success */
 }
 
 .perpetual-heart {
@@ -164,12 +173,15 @@ body.dark-mode {
         transform: translateY(110vh) rotate(0deg);
         opacity: 0;
     }
+
     10% {
         opacity: 0.8;
     }
+
     90% {
         opacity: 0.6;
     }
+
     100% {
         transform: translateY(-10vh) rotate(720deg);
         opacity: 0;
@@ -182,8 +194,10 @@ body.dark-mode {
     max-width: 500px;
     padding: 20px;
     z-index: 10;
-    max-height: 90vh; /* Limit height to enable scrolling */
-    overflow-y: auto; /* Enable vertical scrolling */
+    max-height: 90vh;
+    /* Limit height to enable scrolling */
+    overflow-y: auto;
+    /* Enable vertical scrolling */
 }
 
 .card {
@@ -211,7 +225,8 @@ body.dark-mode {
 
 .card-content {
     position: relative;
-    z-index: 2; /* Ensure card content is above nervous cat */
+    z-index: 2;
+    /* Ensure card content is above nervous cat */
 }
 
 h1 {
@@ -252,8 +267,13 @@ h1 {
 }
 
 @keyframes shimmer {
-    0% { background-position: 0% center; }
-    100% { background-position: 200% center; }
+    0% {
+        background-position: 0% center;
+    }
+
+    100% {
+        background-position: 200% center;
+    }
 }
 
 .dark-mode .gorgeous {
@@ -372,12 +392,15 @@ h1 {
         transform: translateY(0) rotate(0deg);
         opacity: 0;
     }
+
     10% {
         opacity: 1;
     }
+
     90% {
         opacity: 0.8;
     }
+
     100% {
         transform: translateY(-200vh) rotate(720deg);
         opacity: 0;
@@ -407,7 +430,8 @@ h1 {
     justify-content: center;
     align-items: center;
     margin-top: 15px;
-    position: relative; /* Added position relative for absolute positioned hearts */
+    position: relative;
+    /* Added position relative for absolute positioned hearts */
 }
 
 .cat-svg {
@@ -415,8 +439,10 @@ h1 {
     height: auto;
     filter: drop-shadow(0 5px 10px rgba(255, 107, 149, 0.3));
     animation: bounce 3s ease-in-out infinite;
-    position: relative; /* Added position relative */
-    z-index: 2; /* Ensure cat is above hearts */
+    position: relative;
+    /* Added position relative */
+    z-index: 2;
+    /* Ensure cat is above hearts */
 }
 
 .dark-mode .cat-svg g {
@@ -473,9 +499,12 @@ h1 {
 }
 
 @keyframes catHeartFloat {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translateY(0) scale(1);
     }
+
     50% {
         transform: translateY(-10px) scale(1.2);
     }
@@ -591,9 +620,11 @@ h1 {
         opacity: 0;
         transform: translate(0, -10vh) rotate(0deg);
     }
+
     10% {
         opacity: 1;
     }
+
     100% {
         opacity: 0;
         transform: translate(calc(var(--random-x) * 10vw), calc(100vh + 20px)) rotate(calc(var(--random-r) * 360deg));
@@ -617,14 +648,23 @@ h1 {
 
 /* Position the success arrow at the bottom right corner outside the card */
 #success-arrow {
-    right: -90px; /* Position it outside the card */
-    bottom: 10px; /* Position at bottom */
+    right: -90px;
+    /* Position it outside the card */
+    bottom: 10px;
+    /* Position at bottom */
     transition: opacity 0.5s ease-out, transform 0.5s ease-out;
 }
 
 @keyframes floatArrow {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-15px); }
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
 }
 
 .arrow-circle {
@@ -642,7 +682,8 @@ h1 {
 
 /* Style the right-pointing arrow */
 .right-arrow {
-    transform: rotate(0deg) !important; /* Force horizontal orientation */
+    transform: rotate(0deg) !important;
+    /* Force horizontal orientation */
 }
 
 .right-arrow .arrow-shaft {
@@ -719,9 +760,11 @@ h1 {
         transform: translateY(0) scale(0.8);
         opacity: 0;
     }
+
     25% {
         opacity: 0.8;
     }
+
     100% {
         transform: translateY(-40px) scale(0.4);
         opacity: 0;
@@ -741,16 +784,31 @@ h1 {
 
 /* More intense nervous shaking animation */
 @keyframes nervousShake {
-    0% { transform: scale(0.7) translateX(0) rotate(0deg); }
-    25% { transform: scale(0.7) translateX(-3px) rotate(-1deg); }
-    50% { transform: scale(0.7) translateX(0) rotate(1deg); }
-    75% { transform: scale(0.7) translateX(3px) rotate(-0.5deg); }
-    100% { transform: scale(0.7) translateX(0) rotate(0deg); }
+    0% {
+        transform: scale(0.7) translateX(0) rotate(0deg);
+    }
+
+    25% {
+        transform: scale(0.7) translateX(-3px) rotate(-1deg);
+    }
+
+    50% {
+        transform: scale(0.7) translateX(0) rotate(1deg);
+    }
+
+    75% {
+        transform: scale(0.7) translateX(3px) rotate(-0.5deg);
+    }
+
+    100% {
+        transform: scale(0.7) translateX(0) rotate(0deg);
+    }
 }
 
 /* Enhanced sweat drops - more frequent and faster animation */
 .sweat-drop {
-    animation: sweatDrip 1.5s infinite; /* Faster animation */
+    animation: sweatDrip 1.5s infinite;
+    /* Faster animation */
     opacity: 0.8;
     transform-origin: center top;
     filter: drop-shadow(0 0 2px rgba(163, 217, 255, 0.5));
@@ -761,11 +819,13 @@ h1 {
 }
 
 .drop2 {
-    animation-delay: 0.3s; /* Reduced delay for more overlapping drops */
+    animation-delay: 0.3s;
+    /* Reduced delay for more overlapping drops */
 }
 
 .drop3 {
-    animation-delay: 0.6s; /* Reduced delay for more overlapping drops */
+    animation-delay: 0.6s;
+    /* Reduced delay for more overlapping drops */
 }
 
 /* Enhanced sweat dripping animation */
@@ -774,14 +834,17 @@ h1 {
         transform: translateY(0) scale(0.3);
         opacity: 0;
     }
+
     10% {
         opacity: 0.9;
         transform: translateY(0) scale(0.3);
     }
+
     70% {
         transform: translateY(100px) scale(1);
         opacity: 0.9;
     }
+
     100% {
         transform: translateY(150px) scale(0.5);
         opacity: 0;
@@ -803,11 +866,19 @@ h1 {
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-.date-input, .time-input {
+.date-input,
+.time-input {
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -815,17 +886,20 @@ h1 {
     gap: 5px;
 }
 
-.date-input label, .time-input label {
+.date-input label,
+.time-input label {
     font-size: 14px;
     color: #ff6b95;
     font-weight: 600;
 }
 
-.dark-mode .date-input label, .dark-mode .time-input label {
+.dark-mode .date-input label,
+.dark-mode .time-input label {
     color: #ff8bb3;
 }
 
-.date-input input, .time-input input {
+.date-input input,
+.time-input input {
     width: 100%;
     padding: 12px 15px;
     border: 2px solid rgba(255, 182, 193, 0.5);
@@ -838,13 +912,15 @@ h1 {
     transition: all 0.3s ease;
 }
 
-.dark-mode .date-input input, .dark-mode .time-input input {
+.dark-mode .date-input input,
+.dark-mode .time-input input {
     background: #1e1e1e;
     border-color: rgba(255, 107, 149, 0.3);
     color: #e6e6e6;
 }
 
-.date-input input:focus, .time-input input:focus {
+.date-input input:focus,
+.time-input input:focus {
     border-color: rgba(255, 107, 149, 0.8);
     outline: none;
     box-shadow: 0 4px 10px rgba(255, 107, 149, 0.2);
@@ -914,9 +990,19 @@ h1 {
 }
 
 @keyframes calendar-pop {
-    0% { transform: scale(0.95); opacity: 0; }
-    70% { transform: scale(1.02); }
-    100% { transform: scale(1); opacity: 1; }
+    0% {
+        transform: scale(0.95);
+        opacity: 0;
+    }
+
+    70% {
+        transform: scale(1.02);
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 
 .flatpickr-months {
@@ -934,26 +1020,31 @@ h1 {
     font-size: 16px;
 }
 
-.flatpickr-current-month .flatpickr-monthDropdown-months, .flatpickr-current-month input.cur-year {
+.flatpickr-current-month .flatpickr-monthDropdown-months,
+.flatpickr-current-month input.cur-year {
     font-weight: 600;
 }
 
 /* Beautiful aesthetic scrollbar with transparent background - fixed for global use */
 ::-webkit-scrollbar {
     width: 12px;
-    display: block; /* Always show scrollbar */
+    display: block;
+    /* Always show scrollbar */
 }
 
 ::-webkit-scrollbar-track {
-    background: transparent; /* Transparent track */
+    background: transparent;
+    /* Transparent track */
     margin: 10px 0;
 }
 
 ::-webkit-scrollbar-thumb {
     background: linear-gradient(45deg, #ffb6c1, #ff8bb3);
     border-radius: 20px;
-    border: 3px solid transparent; /* Transparent border */
-    background-clip: padding-box; /* Makes the scrollbar float with transparent edges */
+    border: 3px solid transparent;
+    /* Transparent border */
+    background-clip: padding-box;
+    /* Makes the scrollbar float with transparent edges */
     box-shadow: 0 0 8px rgba(255, 107, 149, 0.2);
     transition: all 0.3s ease;
 }
@@ -981,7 +1072,8 @@ h1 {
     width: 36px;
     height: 36px;
     z-index: 1000;
-    opacity: 0.7; /* Make it more visible by default */
+    opacity: 0.7;
+    /* Make it more visible by default */
     transition: opacity 0.3s ease;
     pointer-events: none;
 }
@@ -1024,9 +1116,12 @@ body:hover .scrollbar-decoration {
 }
 
 @keyframes floatScrollbarHeart {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translateY(0);
     }
+
     50% {
         transform: translateY(-8px);
     }
@@ -1043,9 +1138,12 @@ body:hover .scrollbar-decoration {
 }
 
 @keyframes bounce {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translateY(0);
     }
+
     50% {
         transform: translateY(-15px);
     }
@@ -1053,14 +1151,27 @@ body:hover .scrollbar-decoration {
 
 /* Remove toast notification styling */
 .toast {
-    display: none; /* Hide all toast notifications */
+    display: none;
+    /* Hide all toast notifications */
 }
 
 /* Shake animation for max selection reached */
 @keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    20%, 60% { transform: translateX(-5px); }
-    40%, 80% { transform: translateX(5px); }
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    20%,
+    60% {
+        transform: translateX(-5px);
+    }
+
+    40%,
+    80% {
+        transform: translateX(5px);
+    }
 }
 
 .location-btn.shake {
@@ -1069,65 +1180,84 @@ body:hover .scrollbar-decoration {
 
 @media (max-width: 500px) {
     /* ...existing mobile styles... */
-    
+
     ::-webkit-scrollbar {
-        width: 8px; /* Smaller scrollbar for mobile */
+        width: 8px;
+        /* Smaller scrollbar for mobile */
     }
-    
+
     ::-webkit-scrollbar-thumb {
         border-width: 2px;
     }
-    
+
     .scrollbar-decoration {
         right: 5px;
         bottom: 5px;
         width: 30px;
         height: 30px;
     }
-    
+
     .scrollbar-heart {
         width: 10px;
         height: 10px;
     }
-    
+
     .nervous-cat {
         transform: scale(0.5);
         top: 5px;
         left: 5px;
     }
-    
+
     @keyframes nervousShake {
-        0% { transform: scale(0.5) translateX(0) rotate(0deg); }
-        25% { transform: scale(0.5) translateX(-3px) rotate(-1deg); }
-        50% { transform: scale(0.5) translateX(0) rotate(1deg); }
-        75% { transform: scale(0.5) translateX(3px) rotate(-0.5deg); }
-        100% { transform: scale(0.5) translateX(0) rotate(0deg); }
+        0% {
+            transform: scale(0.5) translateX(0) rotate(0deg);
+        }
+
+        25% {
+            transform: scale(0.5) translateX(-3px) rotate(-1deg);
+        }
+
+        50% {
+            transform: scale(0.5) translateX(0) rotate(1deg);
+        }
+
+        75% {
+            transform: scale(0.5) translateX(3px) rotate(-0.5deg);
+        }
+
+        100% {
+            transform: scale(0.5) translateX(0) rotate(0deg);
+        }
     }
-    
+
     .sweat-drop {
         transform-origin: center top;
-        transform: scale(0.7); /* Reduce the size of sweat drops on mobile */
+        transform: scale(0.7);
+        /* Reduce the size of sweat drops on mobile */
     }
-    
+
     @keyframes sweatDrip {
         0% {
             transform: translateY(0) scale(0.2);
             opacity: 0;
         }
+
         10% {
             opacity: 0.9;
             transform: translateY(0) scale(0.2);
         }
+
         70% {
             transform: translateY(70px) scale(0.7);
             opacity: 0.9;
         }
+
         100% {
             transform: translateY(100px) scale(0.3);
             opacity: 0;
         }
     }
-    
+
     /* ...other existing mobile styles... */
 }
 
@@ -1146,9 +1276,19 @@ body:hover .scrollbar-decoration {
 }
 
 @keyframes badge-pop {
-    0% { transform: scale(0.8); opacity: 0; }
-    70% { transform: scale(1.1); }
-    100% { transform: scale(1); opacity: 1; }
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    70% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 
 .dark-mode .location-counter {
@@ -1186,9 +1326,17 @@ body:hover .scrollbar-decoration {
 }
 
 @keyframes check-pop {
-    0% { transform: scale(0); }
-    70% { transform: scale(1.2); }
-    100% { transform: scale(1); }
+    0% {
+        transform: scale(0);
+    }
+
+    70% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
 
 .dark-mode .location-btn.selected:after {
@@ -1198,8 +1346,10 @@ body:hover .scrollbar-decoration {
 
 /* Ensure inner elements with scrollbars get the same styling */
 * ::-webkit-scrollbar {
-    width: 10px; /* Slightly smaller for inner elements */
-    display: block; /* Always show scrollbars */
+    width: 10px;
+    /* Slightly smaller for inner elements */
+    display: block;
+    /* Always show scrollbars */
 }
 
 * ::-webkit-scrollbar-track {
@@ -1237,25 +1387,45 @@ body:hover .scrollbar-decoration {
     * ::-webkit-scrollbar {
         width: 8px;
     }
-    
+
     ::-webkit-scrollbar-thumb,
     * ::-webkit-scrollbar-thumb {
         border-width: 2px;
     }
-    
+
     /* ...existing code... */
 }
 
 @keyframes wiggle {
-    0%, 100% { transform: rotate(0); }
-    25% { transform: rotate(-10deg); }
-    75% { transform: rotate(10deg); }
+
+    0%,
+    100% {
+        transform: rotate(0);
+    }
+
+    25% {
+        transform: rotate(-10deg);
+    }
+
+    75% {
+        transform: rotate(10deg);
+    }
 }
 
 @keyframes svgWiggle {
-    0%, 100% { transform: rotate(0); }
-    25% { transform: rotate(-5deg); }
-    75% { transform: rotate(5deg); }
+
+    0%,
+    100% {
+        transform: rotate(0);
+    }
+
+    25% {
+        transform: rotate(-5deg);
+    }
+
+    75% {
+        transform: rotate(5deg);
+    }
 }
 
 /* Style info icon in final message */
@@ -1447,9 +1617,17 @@ body:hover .scrollbar-decoration {
 }
 
 @keyframes selected-pulse {
-    0% { box-shadow: 0 0 0 0 rgba(255, 107, 149, 0.7); }
-    70% { box-shadow: 0 0 0 10px rgba(255, 107, 149, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(255, 107, 149, 0); }
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 107, 149, 0.7);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(255, 107, 149, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 107, 149, 0);
+    }
 }
 
 .dark-mode .food-btn.selected {
@@ -1457,9 +1635,17 @@ body:hover .scrollbar-decoration {
 }
 
 @keyframes selected-pulse-dark {
-    0% { box-shadow: 0 0 0 0 rgba(255, 139, 179, 0.7); }
-    70% { box-shadow: 0 0 0 10px rgba(255, 139, 179, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(255, 139, 179, 0); }
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 139, 179, 0.7);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(255, 139, 179, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 139, 179, 0);
+    }
 }
 
 /* Food selection status indicator */
@@ -1512,6 +1698,7 @@ body:hover .scrollbar-decoration {
     0% {
         transform: translateX(-100%) translateY(-100%) rotate(45deg);
     }
+
     100% {
         transform: translateX(100%) translateY(100%) rotate(45deg);
     }
@@ -1522,19 +1709,19 @@ body:hover .scrollbar-decoration {
     .food-btn {
         padding: 10px;
     }
-    
+
     .food-btn .svg-icon {
         height: 24px;
     }
-    
+
     .food-btn .svg-icon svg {
         height: 24px;
     }
-    
+
     .custom-food-container {
         padding: 10px;
     }
-    
+
     .custom-food-badge {
         font-size: 12px;
         padding: 6px 10px 6px 12px;
@@ -1573,9 +1760,11 @@ body:hover .scrollbar-decoration {
         transform: translate(0, 0) scale(0.3);
         opacity: 0.8;
     }
+
     50% {
         opacity: 0.9;
     }
+
     100% {
         transform: translate(calc(var(--random-x, 0) * 30px), -60px) scale(0);
         opacity: 0;
@@ -1644,7 +1833,8 @@ body:hover .scrollbar-decoration {
 }
 
 /* Enhanced food and drink selection styling */
-.food-btn, .drink-btn {
+.food-btn,
+.drink-btn {
     position: relative;
     overflow: hidden;
     transition: all 0.3s ease;
@@ -1705,7 +1895,8 @@ body:hover .scrollbar-decoration {
 }
 
 /* Hover styles */
-.food-btn:hover, .drink-btn:hover {
+.food-btn:hover,
+.drink-btn:hover {
     transform: translateY(-1px);
 }
 
@@ -1726,7 +1917,8 @@ body:hover .scrollbar-decoration {
 }
 
 /* Add visual indicator for selected buttons (checkmark) */
-.food-btn.selected:after, .drink-btn.selected:after {
+.food-btn.selected:after,
+.drink-btn.selected:after {
     content: "✓";
     position: absolute;
     top: 8px;
@@ -1746,34 +1938,73 @@ body:hover .scrollbar-decoration {
 }
 
 @keyframes fade-in {
-    0% { opacity: 0; transform: scale(0.5); }
-    100% { opacity: 1; transform: scale(1); }
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 /* Keep the existing selection animation but enhance it */
 @keyframes selected-pulse {
-    0% { box-shadow: 0 0 0 0 rgba(255, 107, 149, 0.4); }
-    70% { box-shadow: 0 0 0 10px rgba(255, 107, 149, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(255, 107, 149, 0); }
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 107, 149, 0.4);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(255, 107, 149, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 107, 149, 0);
+    }
 }
 
 @keyframes selected-pulse-dark {
-    0% { box-shadow: 0 0 0 0 rgba(255, 107, 149, 0.2); }
-    70% { box-shadow: 0 0 0 10px rgba(255, 107, 149, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(255, 107, 149, 0); }
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 107, 149, 0.2);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(255, 107, 149, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 107, 149, 0);
+    }
 }
 
 /* Custom styles for drink pulse animations */
 @keyframes selected-drink-pulse {
-    0% { box-shadow: 0 0 0 0 rgba(107, 181, 255, 0.4); }
-    70% { box-shadow: 0 0 0 10px rgba(107, 181, 255, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(107, 181, 255, 0); }
+    0% {
+        box-shadow: 0 0 0 0 rgba(107, 181, 255, 0.4);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(107, 181, 255, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(107, 181, 255, 0);
+    }
 }
 
 @keyframes selected-drink-pulse-dark {
-    0% { box-shadow: 0 0 0 0 rgba(107, 181, 255, 0.2); }
-    70% { box-shadow: 0 0 0 10px rgba(107, 181, 255, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(107, 181, 255, 0); }
+    0% {
+        box-shadow: 0 0 0 0 rgba(107, 181, 255, 0.2);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(107, 181, 255, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(107, 181, 255, 0);
+    }
 }
 
 .food-btn.selected {
@@ -1806,7 +2037,8 @@ body:hover .scrollbar-decoration {
 } */
 
 /* Improve accessibility - focus states */
-.food-btn:focus, .drink-btn:focus {
+.food-btn:focus,
+.drink-btn:focus {
     outline: none;
     box-shadow: 0 0 0 2px rgba(255, 107, 149, 0.5);
 }
@@ -1825,7 +2057,9 @@ body:hover .scrollbar-decoration {
 }
 
 /* Enhanced unified styling for location, food and drink buttons */
-.location-btn, .food-btn, .drink-btn {
+.location-btn,
+.food-btn,
+.drink-btn {
     position: relative;
     overflow: hidden;
     transition: all 0.3s ease;
@@ -1843,39 +2077,51 @@ body:hover .scrollbar-decoration {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.dark-mode .location-btn, .dark-mode .food-btn, .dark-mode .drink-btn {
+.dark-mode .location-btn,
+.dark-mode .food-btn,
+.dark-mode .drink-btn {
     background-color: #2a2329;
     color: #e6e6e6;
     border-color: #3d323a;
 }
 
 /* Normal state hover effects */
-.location-btn:hover, .food-btn:hover, .drink-btn:hover {
+.location-btn:hover,
+.food-btn:hover,
+.drink-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
     background-color: #fff9fa;
 }
 
-.dark-mode .location-btn:hover, .dark-mode .food-btn:hover, .dark-mode .drink-btn:hover {
+.dark-mode .location-btn:hover,
+.dark-mode .food-btn:hover,
+.dark-mode .drink-btn:hover {
     background-color: #332830;
 }
 
 /* Selected state for all buttons */
-.location-btn.selected, .food-btn.selected, .drink-btn.selected {
+.location-btn.selected,
+.food-btn.selected,
+.drink-btn.selected {
     background-color: #ffe2e9;
     border-color: #ff6b95;
     transform: translateY(-3px);
     box-shadow: 0 4px 12px rgba(255, 107, 149, 0.25);
 }
 
-.dark-mode .location-btn.selected, .dark-mode .food-btn.selected, .dark-mode .drink-btn.selected {
+.dark-mode .location-btn.selected,
+.dark-mode .food-btn.selected,
+.dark-mode .drink-btn.selected {
     background-color: #3c2a33;
     border-color: #ff6b95;
     box-shadow: 0 4px 12px rgba(255, 107, 149, 0.15);
 }
 
 /* Add checkmark for all selected buttons */
-.location-btn.selected:after, .food-btn.selected:after, .drink-btn.selected:after {
+.location-btn.selected:after,
+.food-btn.selected:after,
+.drink-btn.selected:after {
     content: "✓";
     position: absolute;
     top: 8px;
@@ -1889,23 +2135,43 @@ body:hover .scrollbar-decoration {
 
 /* Consistent animation for all buttons */
 @keyframes selected-pulse {
-    0% { box-shadow: 0 0 0 0 rgba(255, 107, 149, 0.4); }
-    70% { box-shadow: 0 0 0 10px rgba(255, 107, 149, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(255, 107, 149, 0); }
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 107, 149, 0.4);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(255, 107, 149, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 107, 149, 0);
+    }
 }
 
-.location-btn.selected, .food-btn.selected, .drink-btn.selected {
+.location-btn.selected,
+.food-btn.selected,
+.drink-btn.selected {
     animation: selected-pulse 1.5s infinite;
 }
 
-.dark-mode .location-btn.selected, .dark-mode .food-btn.selected, .dark-mode .drink-btn.selected {
+.dark-mode .location-btn.selected,
+.dark-mode .food-btn.selected,
+.dark-mode .drink-btn.selected {
     animation: selected-pulse-dark 1.5s infinite;
 }
 
 @keyframes selected-pulse-dark {
-    0% { box-shadow: 0 0 0 0 rgba(255, 107, 149, 0.2); }
-    70% { box-shadow: 0 0 0 10px rgba(255, 107, 149, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(255, 107, 149, 0); }
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 107, 149, 0.2);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(255, 107, 149, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 107, 149, 0);
+    }
 }
 
 /* Fix completion card to transition like other cards - consolidated version */
@@ -1959,7 +2225,8 @@ body:hover .scrollbar-decoration {
 }
 
 /* Fix for selection status messages */
-.food-selection-status, .drink-selection-status {
+.food-selection-status,
+.drink-selection-status {
     margin: 15px 0;
     padding: 8px 15px;
     border-radius: 20px;
@@ -1998,4 +2265,15 @@ body:hover .scrollbar-decoration {
 .dark-mode .drink-selection-status.active {
     background: rgba(139, 164, 255, 0.15);
     color: #8b93ff;
+}
+
+.backdrop-model {
+    background: rgba(0, 0, 123, 0.5);
+    color: red;
+    font-weight: bolder;
+    font-size: 20px;
+}
+
+.backgroundBlur {
+    background: rgba(0, 0, 123, .7) !important;
 }

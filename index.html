@@ -15,7 +15,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.17.2/dist/sweetalert2.all.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.17.2/dist/sweetalert2.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <meta charset="UTF-8">
     <script>
         // Initialize dark mode immediately to prevent flash of wrong theme
         (function () {
@@ -59,7 +62,7 @@
         </label>
     </div>
 
-    <div class="container">
+    <div class="container" id="scrollable-div">
         <div class="card" id="main-card">
             <div class="hearts-container" id="hearts-container"></div>
             <!-- Nervous cat -->
@@ -138,10 +141,10 @@
             <div class="card-content">
                 <h1>Hello <span class="special-text gorgeous">gorgeous</span>...</h1>
                 <div class="sakura-divider"></div>
-                <p class="question">Will you go on a date with me?</p>
+                <p class="question">Em ơi đi date với a nha &#128151;</p>
                 <div class="buttons">
-                    <button id="yes-btn" class="btn yes-btn">YES! ♥</button>
-                    <button id="no-btn" class="btn no-btn"><b>NO! ☹</button>
+                    <button id="yes-btn" class="btn yes-btn">Đồng Ý! <span>&#128151</span></button>
+                    <button id="no-btn" class="btn no-btn"><b>KHÔNG! <span> &#128546;</span></button>
                 </div>
             </div>
         </div>
@@ -151,8 +154,8 @@
             <div class="card-content">
                 <h1>Yayyy!!! 🌸</h1>
                 <div class="sakura-divider"></div>
-                <p>So excited to see you!!!</p>
-                <p class="message">I'll make it special, I promise! </p>
+                <p>Rất mong chờ được đi chơi với em đó!!!</p>
+                <p class="message">Anh sẽ làm cho buổi hẹn này <br /> thật đặc biệt :D </p>
                 <div class="cute-animation">
                     <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="320" height="220"
                         viewBox="0 0 370.000000 270.000000" preserveAspectRatio="xMidYMid meet" class="cat-svg">
@@ -239,7 +242,7 @@
                     </div>
                 </div>
                 <div class="next-step">
-                    <button id="choose-location-btn" class="btn yes-btn">Let's choose a place ♥</button>
+                    <button id="choose-location-btn" class="btn yes-btn">Hãy chọn 1 nơi để đi chơi nào ♥</button>
                 </div>
             </div>
         </div>
@@ -249,46 +252,46 @@
             <div class="card-content">
                 <h1>Pick a <span class="special-text">place</span>...</h1>
                 <div class="sakura-divider"></div>
-                <p class="question">Where would you like to go?</p>
+                <p class="question">Em muốn đi đâu chơi nè?</p>
                 <div class="location-options">
                     <button class="location-btn" data-location="cafe">
                         <span class="location-icon">☕</span>
-                        <span>Café</span>
+                        <span>Cafe</span>
                     </button>
                     <button class="location-btn" data-location="restaurant">
                         <span class="location-icon">🍽️</span>
-                        <span>Restaurant</span>
+                        <span>Nhà hàng</span>
                     </button>
                     <button class="location-btn" data-location="cinema">
                         <span class="location-icon">🎬</span>
-                        <span>Cinema</span>
+                        <span>Xem phim</span>
                     </button>
                     <button class="location-btn" data-location="park">
                         <span class="location-icon">🌳</span>
-                        <span>Park</span>
+                        <span>Công viên</span>
                     </button>
                     <button class="location-btn" data-location="mall">
                         <span class="location-icon">🛍️</span>
-                        <span>Mall</span>
+                        <span>Trung tâm <br /> thương mại</span>
                     </button>
                     <button class="location-btn" data-location="around-city">
                         <span class="location-icon">🏙️</span>
-                        <span>Around the City</span>
+                        <span>Lòng vòng <br /> Thành Phố</span>
                     </button>
                     <button class="location-btn" data-location="somewhere-else">
                         <span class="location-icon">✨</span>
-                        <span>Somewhere Else</span>
+                        <span>1 chỗ nào khác</span>
                     </button>
                 </div>
                 <div class="selected-location-message hidden" id="selected-location-message">
-                    <p class="message">Nice choice! 💕</p>
+                    <p class="message">Lựa chọn sáng suốt đó! 💕</p>
                 </div>
 
                 <div class="date-input" id="divPlaceElse" style="margin-bottom: 30px; display: none;">
-                    <input type="text" class="date-picker" id="placeElse" placeholder="What do want to go?">
+                    <input type="text" class="date-picker" id="placeElse" placeholder="Em muốn đi chỗ nào chơi nè?">
                 </div>
 
-                <button id="confirm-location-btn" class="btn yes-btn">Continue ♥</button>
+                <button id="confirm-location-btn" hidden class="btn yes-btn">Tiếp Tục ♥</button>
             </div>
         </div>
 
@@ -298,16 +301,16 @@
             <div class="card-content">
                 <h1>Pick a <span class="special-text">when</span>...</h1>
                 <div class="sakura-divider"></div>
-                <p class="question">What time would work for you?</p>
+                <p class="question">Em rảnh thời gian nào để a phi trâu sang rước?</p>
                 <div class="datetime-container">
                     <div class="datetime-row" id="datetime-row-template">
                         <div class="date-input">
-                            <label>Date</label>
-                            <input type="text" class="date-picker" placeholder="Select a date" readonly>
+                            <label>Chọn ngày nè:</label>
+                            <input type="text" class="date-picker" placeholder="Ngày" readonly>
                         </div>
                         <div class="time-input">
-                            <label>Time</label>
-                            <input type="text" class="time-picker" placeholder="Select time">
+                            <label>Chọn thời gian nè:</label>
+                            <input type="text" class="time-picker" placeholder="Thời gian">
                         </div>
                         <button class="remove-datetime btn-icon" title="Remove this option">
                             <span>✕</span>
@@ -316,7 +319,7 @@
                 </div>
 
                 <button id="add-datetime" class="btn add-btn">
-                    <span>+ Add another option</span>
+                    <span>+ Em có thể thêm những ngày khác nữa</span>
                 </button>
 
                 <div class="datetime-actions">
@@ -324,8 +327,8 @@
                 </div>
 
                 <div class="selected-datetime-message hidden" id="selected-datetime-message">
-                    <p class="message">Perfect time! 💕</p>
-                    <button id="food-next-btn" class="btn yes-btn"
+                    <p class="message">Hoàn hảo! 💕</p>
+                    <button id="food-next-btn" style="display: none;" class="btn yes-btn"
                         style="margin-top: 15px; display: inline-block;">Let's Pick Some Food ♥</button>
                 </div>
             </div>
@@ -508,6 +511,9 @@
 
                 <div class="selected-location-message hidden" id="selected-food-message">
                     <p class="message">Yummy! I'm already hungry! 🤤</p>
+                </div>
+                <div class="date-input" id="divPlaceElse" style="margin-bottom: 30px; display: none;">
+                    <input type="text" class="date-picker" id="placeElse" placeholder="What do want to go?">
                 </div>
                 <button id="confirm-food-btn" class="btn yes-btn" style="display: none;">Confirm ♥</button>
                 <div class="final-message hidden" id="final-message">
@@ -802,7 +808,9 @@
 
     <script src="script.js"></script>
     <script src="constants.js"></script>
+    <script>
 
+    </script>
 </body>
 
 </html>

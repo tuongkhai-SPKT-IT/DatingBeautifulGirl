@@ -57,9 +57,7 @@ function addBlank(str) {
 //Manage Data from API
 const getData = () => {
     fetch(scriptURL).then(response => {
-        console.log(typeof response)
         response.json().then((res) => {
-            console.log(res)
             localStorage.setItem(ID, res[0] === "ID" ? 1 : res[0] + 1)
         });
         const now = new Date();
@@ -112,7 +110,7 @@ const postData = () => {
         .then(() => {
             setTimeout(() => {
                 console.log("đã ghi");
-            }, 1000); location.reload();
+            }, 1000);
         })
         .catch(error => console.error('Error!', error.message))
 }
