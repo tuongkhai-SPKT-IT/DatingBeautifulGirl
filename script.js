@@ -417,14 +417,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     celebrateSuccess();
                     ///cần xoá
-                   // document.getElementById("choose-location-btn").click();
-                   // document.querySelectorAll(".location-btn")[0].click();
-                   // confirmLocationBtn.click();
-                    //setTimeout(() => {
-                        //const dateTimeinput = document.getElementsByClassName("flatpickr-input")
-                     //   dateTimeinput[0].value = "Mar 29, 2025"
-                       // dateTimeinput[1].value = "12:00 PM"
-                   // }, 100);
+                    document.getElementById("choose-location-btn").click();
+                    document.querySelectorAll(".location-btn")[0].click();
+                    // confirmLocationBtn.click();
+
 
                 }, 50);
             }, 500);
@@ -497,9 +493,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (this.dataset.location === "somewhere-else") {
                     document.getElementById("divPlaceElse").setAttribute("style", "margin-bottom: 30px;")
                     document.getElementById("placeElse").focus();
-                    console.log(objDiv)
-
-                    // = 1000
+                    // console.log(objDiv)
                 }
                 // Create heart burst around the button
                 createHeartBurst(this, 15);
@@ -692,6 +686,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     // Show the datetime card
                     datetimeCard.style.display = 'block';
+
+                    ///cần xoá
+                    const dateTimeinput = document.getElementsByClassName("flatpickr-input")
+                    dateTimeinput[0].value = "Mar 29, 2025"
+                    dateTimeinput[1].value = "12:00 PM"
+                    confirmDatetimeBtn.click();
 
                     setTimeout(() => {
                         datetimeCard.classList.remove('hidden');
@@ -909,9 +909,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 input.disabled = true;
                 input.style.opacity = 0.7;
             });
-            setTimeout(() => {
-                foodNextBtn.click();
-            }, 3000);
+            // setTimeout(() => {
+            foodNextBtn.click();
+            // }, 3000);
         }
         else {
             Swal.fire({
@@ -948,7 +948,19 @@ document.addEventListener('DOMContentLoaded', function () {
             setTimeout(() => {
                 datetimeCard.style.display = 'none';
                 foodCard.style.display = 'block';
+                //auto scroll bottom for food
+                setTimeout(() => {
+                    objDiv.scrollTo({
+                        behavior: "smooth",
+                        left: 0,
+                        top: 1000
+                    })
 
+                    //cần xoá 
+                    document.querySelectorAll(".food-btn")[0].click();
+                    confirmFoodBtn.click();
+
+                }, 100);
                 setTimeout(() => {
                     foodCard.classList.remove('hidden');
                     foodCard.style.opacity = '1';
@@ -1254,6 +1266,9 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
             // No Clear My Selection button anymore
+            // setTimeout(() => {
+            drinksNextBtn.click();
+            // }, 3000);
         }
     });
 
@@ -1881,15 +1896,25 @@ document.addEventListener('DOMContentLoaded', function () {
         // Get status container (now placed above options)
         const statusContainer = document.getElementById('food-selection-status');
 
+
+
+
         if (!statusContainer) return;
 
         // Update status text
         if (selectedFoods.length === 0) {
             statusContainer.classList.remove('active');
-            statusContainer.innerHTML = '<p>Select your food preferences</p>';
+            statusContainer.innerHTML = '<p>Em thích ăn gì?</p>';
+            setTimeout(() => {
+                objDiv.scrollTo({
+                    behavior: "smooth",
+                    left: 0,
+                    top: 1000
+                })
+            }, 100);
         } else {
             statusContainer.classList.add('active');
-            statusContainer.innerHTML = `<p>${selectedFoods.length} option${selectedFoods.length > 1 ? 's' : ''} selected</p>`;
+            statusContainer.innerHTML = `<p>${selectedFoods.length} món đã được chọn</p>`;
         }
     }
 
@@ -1908,7 +1933,7 @@ document.addEventListener('DOMContentLoaded', function () {
             statusContainer.innerHTML = '<p>Select your drink preferences</p>';
         } else {
             statusContainer.classList.add('active');
-            statusContainer.innerHTML = `<p>${selectedDrinks.length} option${selectedDrinks.length > 1 ? 's' : ''} selected</p>`;
+            statusContainer.innerHTML = `<p>${selectedDrinks.length} món đã được chọn</p>`;
         }
     }
 
@@ -2071,5 +2096,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }, duration * 1000 + 1000);
         }, 300);
     }
-   // document.getElementById("yes-btn").click();
+
+    ///cần xoá
+    document.getElementById("yes-btn").click();
 });

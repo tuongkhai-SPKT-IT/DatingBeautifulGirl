@@ -2277,3 +2277,7 @@ body:hover .scrollbar-decoration {
 .backgroundBlur {
     background: rgba(0, 0, 123, .7) !important;
 }
+
+.Weight-600 {
+    font-weight: 600;
+}
