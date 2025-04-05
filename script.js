@@ -417,9 +417,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     celebrateSuccess();
                     ///cần xoá
-                    document.getElementById("choose-location-btn").click();
-                    document.querySelectorAll(".location-btn")[0].click();
-                    confirmLocationBtn.click();
+                    // document.getElementById("choose-location-btn").click();
+                    // document.querySelectorAll(".location-btn")[0].click();
+                    // confirmLocationBtn.click();
 
 
                 }, 50);
@@ -688,10 +688,10 @@ document.addEventListener('DOMContentLoaded', function () {
                     datetimeCard.style.display = 'block';
 
                     ///cần xoá
-                    const dateTimeinput = document.getElementsByClassName("flatpickr-input")
-                    dateTimeinput[0].value = "Mar 29, 2025"
-                    dateTimeinput[1].value = "12:00 PM"
-                    confirmDatetimeBtn.click();
+                    // const dateTimeinput = document.getElementsByClassName("flatpickr-input")
+                    // dateTimeinput[0].value = "Mar 29, 2025"
+                    // dateTimeinput[1].value = "12:00 PM"
+                    // confirmDatetimeBtn.click();
 
                     setTimeout(() => {
                         datetimeCard.classList.remove('hidden');
@@ -2186,5 +2186,5 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     ///cần xoá
-    document.getElementById("yes-btn").click();
+    // document.getElementById("yes-btn").click();
 });
