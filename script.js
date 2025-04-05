@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const objDiv = document.getElementById("scrollable-div")
     localStorage.clear();
     getData();
-    // console.log(testGet)
+    // //console.log(testGet)
 
 
     // Arrow pointers
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const foodCelebration = document.getElementById('food-celebration');
     const confirmFoodBtn = document.getElementById('confirm-food-btn');
     const customFoodContainer = document.getElementById('custom-food-container');
-    const customFoodInput = document.getElementById('custom-food-input');
+    const customFoodInput = document.getElementById('foodElse');
     const addCustomFoodBtn = document.getElementById('add-custom-food');
     const finalMessage = document.getElementById('final-message');
     const finalMessageElement = document.getElementById('final-message');
@@ -133,15 +133,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Event listener for toggle change with debugging
         darkmodeToggle.addEventListener('change', function () {
-            console.log('Dark mode toggle changed. Checked:', this.checked);
+            //console.log('Dark mode toggle changed. Checked:', this.checked);
             if (this.checked) {
                 document.body.classList.add('dark-mode');
                 localStorage.setItem('darkMode', 'enabled');
-                console.log('Dark mode enabled and saved to localStorage');
+                //console.log('Dark mode enabled and saved to localStorage');
             } else {
                 document.body.classList.remove('dark-mode');
                 localStorage.setItem('darkMode', 'disabled');
-                console.log('Dark mode disabled and saved to localStorage');
+                //console.log('Dark mode disabled and saved to localStorage');
             }
         });
 
@@ -152,7 +152,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 const systemPrefersDark = e.matches;
                 document.body.classList.toggle('dark-mode', systemPrefersDark);
                 darkmodeToggle.checked = systemPrefersDark;
-                console.log('System preference changed, dark mode:', systemPrefersDark);
+                //console.log('System preference changed, dark mode:', systemPrefersDark);
             }
         });
     } else {
@@ -310,7 +310,7 @@ document.addEventListener('DOMContentLoaded', function () {
         noBtn.style.left = randomX + 'px';
         noBtn.style.top = randomY + 'px';
         setTimeout(() => {
-            console.log(1);
+            //console.log(1);
         }, 1000);
 
         // Change text but don't reduce font size
@@ -419,7 +419,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     ///cần xoá
                     document.getElementById("choose-location-btn").click();
                     document.querySelectorAll(".location-btn")[0].click();
-                    // confirmLocationBtn.click();
+                    confirmLocationBtn.click();
 
 
                 }, 50);
@@ -493,13 +493,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (this.dataset.location === "somewhere-else") {
                     document.getElementById("divPlaceElse").setAttribute("style", "margin-bottom: 30px;")
                     document.getElementById("placeElse").focus();
-                    // console.log(objDiv)
+                    // //console.log(objDiv)
                 }
                 // Create heart burst around the button
                 createHeartBurst(this, 15);
             } else {
                 // Remove location from selected array
-                console.log(selectedLocations)
                 const temp = [...selectedLocations];
                 const index = temp.indexOf(this.dataset.location);
                 if (index > -1) {
@@ -508,6 +507,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 if (this.dataset.location === "somewhere-else") {
                     document.getElementById("divPlaceElse").style = "display: none"
+                    document.getElementById("placeElse").clear();
                 }
 
                 selectedLocations = temp;
@@ -622,7 +622,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Handle confirm location button click - with improved heart effects
     confirmLocationBtn.addEventListener('click', function () {
-
         if (selectedLocations.length > 0) {
             const index = selectedLocations.indexOf("somewhere-else");
             if (index > -1 && document.getElementById("placeElse").value === "") {
@@ -643,6 +642,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 selectedLocations.splice(index, 1);
             }
             localStorage.setItem(Where, JSON.stringify(selectedLocations));
+            // selectedLocations = [];
             // Add celebration hearts - shorter and more concentrated burst
             for (let i = 0; i < 20; i++) { // Reduced from 30 to 20
                 setTimeout(() => {
@@ -850,7 +850,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     }, 1000);
                 }
             } else {
-                console.log(typeof date, typeof time)
+                //console.log(typeof date, typeof time)
                 dateOptions.push({
                     date: formatDay(date),
                     time: formatTime(time)
@@ -940,7 +940,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Next button to go from datetime to food selection
     if (foodNextBtn) {
         foodNextBtn.addEventListener('click', function () {
-            console.log("Food next button clicked"); // Debug log
+            //console.log("Food next button clicked"); // Debug log
             // Transition to food selection
             datetimeCard.style.transform = 'scale(0.8)';
             datetimeCard.style.opacity = '0';
@@ -957,8 +957,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     })
 
                     //cần xoá 
-                    document.querySelectorAll(".food-btn")[0].click();
-                    confirmFoodBtn.click();
+                    // document.querySelectorAll(".food-btn")[0].click();
+                    // confirmFoodBtn.click();
 
                 }, 100);
                 setTimeout(() => {
@@ -985,31 +985,45 @@ document.addEventListener('DOMContentLoaded', function () {
             foodButtons.forEach(button => {
                 button.addEventListener('click', function () {
                     const food = this.dataset.food;
-
-                    // Toggle selection
-                    this.classList.toggle('selected');
-
+                    //console.log(this.classList)
                     if (this.classList.contains('selected')) {
                         // Add food to selected array
+                        if (food == "custom") {
+                            document.getElementById("divFoodElse").setAttribute("style", "margin-bottom: 30px")
+                            customFoodInput.focus();
+                            const statusContainer = document.getElementById('food-selection-status');
+                            statusContainer.innerHTML = '<p>Em thích ăn gì?</p>';
+                        }
                         selectedFoods.push(food);
                         createHeartBurst(this, 10);
                     } else {
                         // Remove food from selected array
-                        selectedFoods = selectedFoods.filter(item => item !== food);
+                        const temp = [...selectedFoods];
+                        const index = temp.indexOf(food);
+                        if (index > -1) {
+                            temp.splice(index, 1);
+                        }
+                        if (food == "custom") {
+                            document.getElementById("divFoodElse").setAttribute("style", "display: none")
+                            customFoodInput.value = '';
+                        }
+                        selectedFoods = temp;
                     }
 
-                    // Update message and button
+
+                    // // Update message and button
                     if (selectedFoods.length > 0) {
                         selectedFoodMessage.classList.remove('hidden');
                         selectedFoodMessage.classList.add('show');
                         confirmFoodBtn.style.display = 'inline-block';
+
                     } else {
                         selectedFoodMessage.classList.remove('show');
                         selectedFoodMessage.classList.add('hidden');
                         confirmFoodBtn.style.display = 'none';
                     }
-
                     updateFoodSelectionStatus();
+                    //console.log("sau khi xử lý code click", selectedFoods)
                 });
             });
         }
@@ -1194,19 +1208,36 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    if (customFoodInput) {
-        customFoodInput.addEventListener('keypress', function (e) {
-            if (e.key === 'Enter') {
-                addCustomFood();
-            }
-        });
-    }
+    // if (customFoodInput) {
+    //     customFoodInput.addEventListener('keypress', function (e) {
+    //         if (e.key === 'Enter') {
+    //             addCustomFood();
+    //         }
+    //     });
+    // }
 
     // Handle confirm food button click - Removing Clear My Selection button
     confirmFoodBtn.addEventListener('click', function () {
         if (selectedFoods.length > 0) {
             // Store the selected foods
-            localStorage.setItem(WhatEat, JSON.stringify(selectedFoods));
+            const index = selectedFoods.indexOf("custom")
+            if (index > -1) {
+                if (customFoodInput.value !== "")
+                    selectedFoods.push(customFoodInput.value)
+                else {
+                    Swal.fire({
+                        title: "Em chọn ăn món khác, mà e không nhập món e muốn ăn kìa :D",
+                        width: 600,
+                        padding: "3em",
+                        color: "#716add",
+                        background: "white",
+                        backdrop: `rgb(255, 167, 150,0.6) url("https://i.pinimg.com/originals/72/65/cf/7265cf426cca233423462aefde72ff0d.gif") left top `,
+                        confirmButtonColor: "#ff8bb3"
+                    });
+                    return;
+                }
+            }
+            localStorage.setItem(WhatEat, (selectedFoods));
 
             // Hide confirm button and show final message
             confirmFoodBtn.style.display = 'none';
@@ -1275,7 +1306,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Next button to go from food to drinks selection
     if (drinksNextBtn) {
         drinksNextBtn.addEventListener('click', function () {
-            console.log("Drinks next button clicked"); // Debug log
+            //console.log("Drinks next button clicked"); // Debug log
             // Transition to drinks selection
             foodCard.style.transform = 'scale(0.8)';
             foodCard.style.opacity = '0';
@@ -1891,7 +1922,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Function to update food selection status - UPDATED
     function updateFoodSelectionStatus() {
-        console.log("Updating food selection status");
+        //console.log("Updating food selection status");
 
         // Get status container (now placed above options)
         const statusContainer = document.getElementById('food-selection-status');
@@ -1901,7 +1932,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (!statusContainer) return;
 
-        // Update status text
+        // // Update status text
         if (selectedFoods.length === 0) {
             statusContainer.classList.remove('active');
             statusContainer.innerHTML = '<p>Em thích ăn gì?</p>';
@@ -1917,10 +1948,31 @@ document.addEventListener('DOMContentLoaded', function () {
             statusContainer.innerHTML = `<p>${selectedFoods.length} món đã được chọn</p>`;
         }
     }
+    const foodInputChange = (e) => {
+        const statusContainer = document.getElementById('food-selection-status');
+        let countFood = selectedFoods.length;
+        if (countFood === 0) {
+            statusContainer.classList.remove('active');
+            statusContainer.innerHTML = '<p>Em thích ăn gì?</p>';
+        }
+        else if (selectedFoods.indexOf("custom") > -1) {
+            if (e.target.value === "") {
+                countFood = countFood > 0 ? countFood : countFood - 1;
+                statusContainer.innerHTML = `<p>${countFood - 1} món đã được chọn</p>`;
+            }
+
+            else
+                statusContainer.innerHTML = `<p>${countFood} món đã được chọn</p>`;
+        }
+        // else
+        //     statusContainer.innerHTML = `<p>${selectedFoods.length} món đã được chọn</p>`;
+        // if (selectedFoods.indexOf("custom") < 0)
+    }
+    customFoodInput.addEventListener("input", foodInputChange)
 
     // Function to update drink selection status - UPDATED
     function updateDrinkSelectionStatus() {
-        console.log("Updating drink selection status");
+        //console.log("Updating drink selection status");
 
         // Get status container (now placed above options)
         const statusContainer = document.getElementById('drink-selection-status');
@@ -1938,49 +1990,85 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Food selection with toggle functionality - FIXED
-    if (foodButtons && foodButtons.length > 0) {
-        console.log("Setting up food buttons handlers, found:", foodButtons.length, "buttons");
+    // if (foodButtons && foodButtons.length > 0) {
+    //     //console.log("Setting up food buttons handlers, found:", foodButtons.length, "buttons");
 
-        foodButtons.forEach(button => {
-            button.classList.remove('selected');
+    //     foodButtons.forEach(button => {
+    //         button.classList.remove('selected');
+    //         button.addEventListener('click', function () {
+    //             if (foodButtons.length > 0) {
+    //                 const selectedFood = this.getAttribute('data-food');
+    //                 const isSelected = this.classList.contains('selected');
 
-            button.addEventListener('click', function () {
-                const selectedFood = this.getAttribute('data-food');
-                const isSelected = this.classList.contains('selected');
+    //                 if (isSelected) {
+    //                     this.classList.remove('selected');
+    //                     const temp = [...selectedLocations];
+    //                     const index = temp.indexOf(selectedFood);
+    //                     if (index > -1) {
+    //                         temp.splice(index, 1);
+    //                     }
+    //                     if (selectedFood == "custom") {
+    //                         document.getElementById("divFoodElse").setAttribute("style", "display: none")
 
-                if (isSelected) {
-                    this.classList.remove('selected');
-                    selectedFoods = selectedFoods.filter(food => food !== selectedFood);
-                }
-                else {
-                    this.classList.add('selected');
-                    selectedFoods.push(selectedFood);
+    //                     }
+    //                     selectedFoods = temp;
+    //                     // selectedFoods = selectedFoods.filter(food => food !== selectedFood);
+    //                 }
+    //                 else {
+    //                     //console.log("chưa chọn")
+    //                     this.classList.add('selected');
+    //                     selectedFoods.push(selectedFood);
+    //                     if (selectedFood == "custom")
+    //                         document.getElementById("divFoodElse").setAttribute("style", "margin-bottom: 30px")
+    //                     // Add heart burst effect
+    //                     createHeartBurst(this, 15);
+    //                 }
 
-                    // Add heart burst effect
-                    createHeartBurst(this, 15);
-                }
+    //                 // Show/hide continue button based on selection
+    //                 if (selectedFoods.length > 0) {
+    //                     confirmFoodBtn.style.display = 'inline-block';
+    //                     selectedFoodMessage.classList.remove('hidden');
+    //                     selectedFoodMessage.classList.add('show');
+    //                 }
+    //                 else {
+    //                     confirmFoodBtn.style.display = 'none';
+    //                     selectedFoodMessage.classList.remove('show');
+    //                     selectedFoodMessage.classList.add('hidden');
+    //                 }
 
-                // Show/hide continue button based on selection
-                if (selectedFoods.length > 0) {
-                    confirmFoodBtn.style.display = 'inline-block';
-                    selectedFoodMessage.classList.remove('hidden');
-                    selectedFoodMessage.classList.add('show');
-                }
-                else {
-                    confirmFoodBtn.style.display = 'none';
-                    selectedFoodMessage.classList.remove('show');
-                    selectedFoodMessage.classList.add('hidden');
-                }
+    //                 // Update status - now located above the options
+    //                 updateFoodSelectionStatus();
+    //             }
+    //             else {
+    //                 Swal.fire({
+    //                     title: "Chờ xíu, đi chơi gòi hem đói ha :D",
+    //                     showClass: {
+    //                         popup: `
+    //                                         animate__animated
+    //                                         animate__fadeInUp
+    //                                         animate__faster
+    //                                         backdrop-model backgroundBlur
+    //                                       `
+    //                     },
+    //                     hideClass: {
+    //                         popup: `
+    //                                         animate__animated
+    //                                         animate__fadeOutDown
+    //                                         animate__faster
+    //                                       `
+    //                     },
+    //                     width: "fit-content",
+    //                     backdrop: `white url("https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExeTZkYmE5bTB4OGNtZTZtdDQ3bG5qZGJsOHZ4bTQ1cDJwcTRzMDZkeiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/Y3jYOwMipMMbEF1z8t/giphy.gif") left round space`
+    //                 });
+    //             }
 
-                // Update status - now located above the options
-                updateFoodSelectionStatus();
-            });
-        });
-    }
+    //         });
+    //     });
+    // }
 
     // Similar fix for drink buttons - UPDATED
     if (drinkButtons && drinkButtons.length > 0) {
-        console.log("Setting up drink buttons handlers, found:", drinkButtons.length, "buttons");
+        //console.log("Setting up drink buttons handlers, found:", drinkButtons.length, "buttons");
 
         drinkButtons.forEach(button => {
             button.classList.remove('selected');

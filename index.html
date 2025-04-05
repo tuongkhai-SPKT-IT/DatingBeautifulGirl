@@ -18,6 +18,8 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.17.2/dist/sweetalert2.all.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.17.2/dist/sweetalert2.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="script.js"></script>
+    <script src="constants.js"></script>
     <meta charset="UTF-8">
     <script>
         // Initialize dark mode immediately to prevent flash of wrong theme
@@ -512,8 +514,10 @@
                 <div class="selected-location-message hidden" id="selected-food-message">
                     <p class="message">Tuyệt vời, Ngon lành cành đào! 🤤</p>
                 </div>
-                <div class="date-input" id="divPlaceElse" style="margin-bottom: 30px; display: none;">
-                    <input type="text" class="date-picker" id="placeElse" placeholder="What do want to go?">
+
+                <div class="date-input" id="divFoodElse" style="margin-bottom: 30px; display: none;">
+                    <input type="text" class="date-picker" id="foodElse"
+                        placeholder="Em muốn ăn gì khác nè?">
                 </div>
                 <button id="confirm-food-btn" class="btn yes-btn" style="display: none;">Tiếp nào ♥</button>
                 <div class="final-message hidden" id="final-message">
@@ -815,8 +819,7 @@
         <div class="perpetual-hearts" id="perpetual-hearts"></div>
     </div>
 
-    <script src="script.js"></script>
-    <script src="constants.js"></script>
+
     <script>
 
     </script>
