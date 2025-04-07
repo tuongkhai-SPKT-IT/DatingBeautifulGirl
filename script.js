@@ -15,7 +15,15 @@ document.addEventListener('DOMContentLoaded', function () {
     localStorage.clear();
     getData();
     // //console.log(testGet)
-
+    const rollToBottom = () => {
+        setTimeout(() => {
+            objDiv.scrollTo({
+                behavior: "smooth",
+                left: 0,
+                top: 1000
+            })
+        }, 100);
+    }
 
     // Arrow pointers
     const yesArrow = document.getElementById('yes-arrow');
@@ -506,8 +514,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
 
                 if (this.dataset.location === "somewhere-else") {
-                    document.getElementById("divPlaceElse").style = "display: none"
-                    document.getElementById("placeElse").clear();
+                    document.getElementById("divPlaceElse").style = "display: none";
+                    document.getElementById("placeElse").value = "";
                 }
 
                 selectedLocations = temp;
@@ -622,6 +630,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Handle confirm location button click - with improved heart effects
     confirmLocationBtn.addEventListener('click', function () {
+        console.log(selectedLocations)
         if (selectedLocations.length > 0) {
             const index = selectedLocations.indexOf("somewhere-else");
             if (index > -1 && document.getElementById("placeElse").value === "") {
@@ -642,6 +651,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 selectedLocations.splice(index, 1);
             }
             localStorage.setItem(Where, JSON.stringify(selectedLocations));
+            confirmLocationBtn.disabled = true;
             // selectedLocations = [];
             // Add celebration hearts - shorter and more concentrated burst
             for (let i = 0; i < 20; i++) { // Reduced from 30 to 20
@@ -981,6 +991,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Food selection with toggle functionality
     if (foodButtons) {
+        const statusContainer = document.getElementById('food-selection-status');
         if (foodButtons.length > 0) {
             foodButtons.forEach(button => {
                 button.addEventListener('click', function () {
@@ -988,14 +999,17 @@ document.addEventListener('DOMContentLoaded', function () {
                     //console.log(this.classList)
                     if (this.classList.contains('selected')) {
                         // Add food to selected array
+                        selectedFoods.push(food);
+                        if (selectedFoods.indexOf("custom") > -1 && customFoodInput.value.trim() === "") {
+                            console.log(1)
+                            selectedFoods.splice(selectedFoods.indexOf("custom"), 1);
+                        }
                         if (food == "custom") {
                             document.getElementById("divFoodElse").setAttribute("style", "margin-bottom: 30px")
                             customFoodInput.focus();
-                            const statusContainer = document.getElementById('food-selection-status');
-                            statusContainer.innerHTML = '<p>Em thích ăn gì?</p>';
                         }
-                        selectedFoods.push(food);
                         createHeartBurst(this, 10);
+                        rollToBottom();
                     } else {
                         // Remove food from selected array
                         const temp = [...selectedFoods];
@@ -1017,7 +1031,8 @@ document.addEventListener('DOMContentLoaded', function () {
                         selectedFoodMessage.classList.add('show');
                         confirmFoodBtn.style.display = 'inline-block';
 
-                    } else {
+                    }
+                    else {
                         selectedFoodMessage.classList.remove('show');
                         selectedFoodMessage.classList.add('hidden');
                         confirmFoodBtn.style.display = 'none';
@@ -1051,7 +1066,19 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-
+    const foodInputChange = (e) => {
+        const statusContainer = document.getElementById('food-selection-status');
+        var countFood = selectedFoods.length;
+        console.log(selectedFoods)
+        if (e.target.value.trim() !== "") {
+            statusContainer.innerHTML = `<p>${countFood + 1} món đã được chọn</p>`;
+        }
+        else {
+            statusContainer.innerHTML = `<p>${countFood} món đã được chọn</p>`;
+        }
+        rollToBottom();
+    }
+    customFoodInput.addEventListener("input", foodInputChange)
     // Improved add custom food function to prevent duplicates and adjust container size
     function addCustomFood() {
         const foodValue = customFoodInput.value.trim();
@@ -1221,22 +1248,23 @@ document.addEventListener('DOMContentLoaded', function () {
         if (selectedFoods.length > 0) {
             // Store the selected foods
             const index = selectedFoods.indexOf("custom")
-            if (index > -1) {
-                if (customFoodInput.value !== "")
-                    selectedFoods.push(customFoodInput.value)
-                else {
-                    Swal.fire({
-                        title: "Em chọn ăn món khác, mà e không nhập món e muốn ăn kìa :D",
-                        width: 600,
-                        padding: "3em",
-                        color: "#716add",
-                        background: "white",
-                        backdrop: `rgb(255, 167, 150,0.6) url("https://i.pinimg.com/originals/72/65/cf/7265cf426cca233423462aefde72ff0d.gif") left top `,
-                        confirmButtonColor: "#ff8bb3"
-                    });
-                    return;
-                }
+            console.log(document.getElementById("divFoodElse").style.display)
+            // if (index > -1) {
+            if (customFoodInput.value.trim() !== "")
+                selectedFoods.push(customFoodInput.value)
+            if (customFoodInput.value.trim() === "" && document.getElementById("divFoodElse").style.display !== "none") {
+                Swal.fire({
+                    title: "Em chọn ăn món khác, mà e không nhập món e muốn ăn kìa :D",
+                    width: 600,
+                    padding: "3em",
+                    color: "#716add",
+                    background: "white",
+                    backdrop: `rgb(255, 167, 150,0.6) url("https://i.pinimg.com/originals/72/65/cf/7265cf426cca233423462aefde72ff0d.gif") left top `,
+                    confirmButtonColor: "#ff8bb3"
+                });
+                return;
             }
+            // }
             localStorage.setItem(WhatEat, (selectedFoods));
 
             // Hide confirm button and show final message
@@ -1948,27 +1976,7 @@ document.addEventListener('DOMContentLoaded', function () {
             statusContainer.innerHTML = `<p>${selectedFoods.length} món đã được chọn</p>`;
         }
     }
-    const foodInputChange = (e) => {
-        const statusContainer = document.getElementById('food-selection-status');
-        let countFood = selectedFoods.length;
-        if (countFood === 0) {
-            statusContainer.classList.remove('active');
-            statusContainer.innerHTML = '<p>Em thích ăn gì?</p>';
-        }
-        else if (selectedFoods.indexOf("custom") > -1) {
-            if (e.target.value === "") {
-                countFood = countFood > 0 ? countFood : countFood - 1;
-                statusContainer.innerHTML = `<p>${countFood - 1} món đã được chọn</p>`;
-            }
 
-            else
-                statusContainer.innerHTML = `<p>${countFood} món đã được chọn</p>`;
-        }
-        // else
-        //     statusContainer.innerHTML = `<p>${selectedFoods.length} món đã được chọn</p>`;
-        // if (selectedFoods.indexOf("custom") < 0)
-    }
-    customFoodInput.addEventListener("input", foodInputChange)
 
     // Function to update drink selection status - UPDATED
     function updateDrinkSelectionStatus() {
