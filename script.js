@@ -1291,9 +1291,9 @@ document.addEventListener('DOMContentLoaded', function () {
             // Disable custom food input
             if (customFoodInput) {
                 customFoodInput.disabled = true;
-                addCustomFoodBtn.disabled = true;
+                // addCustomFoodBtn.disabled = true;
                 customFoodInput.style.opacity = '0.7';
-                addCustomFoodBtn.style.opacity = '0.7';
+                // addCustomFoodBtn.style.opacity = '0.7';
             }
 
             // No Clear My Selection button anymore
