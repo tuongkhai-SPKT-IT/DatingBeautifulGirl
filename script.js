@@ -2122,7 +2122,7 @@ document.addEventListener('DOMContentLoaded', function () {
             // Hide drinks card with animation
             drinksCard.style.transform = 'scale(0.8)';
             drinksCard.style.opacity = '0';
-            postData();
+            // postData();
         });
     }
 
